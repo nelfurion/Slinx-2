@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include "headers\Player.h"
+#include "headers\Tigrozav.h"
 
 using namespace irr;
 using namespace core;
@@ -50,6 +51,14 @@ int main()
 		printf("Player failed to load!");
 		return -1;
 	}
+
+	Tigrozav alpha(0, terrainHeight, 0);
+	if (!alpha.load(driver, smgr, alpha.X(), alpha.Y(), alpha.Z()))
+	{
+		printf("Player failed to load!");
+		return -1;
+	}
+
 	//creates an animation from the mesh
 	smgr->addCameraSceneNodeFPS();
 	//hide mouse cursor
