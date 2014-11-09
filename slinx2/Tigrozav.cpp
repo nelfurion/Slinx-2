@@ -19,7 +19,7 @@ Tigrozav::~Tigrozav() { }
 bool Tigrozav::load(IVideoDriver* driver, ISceneManager* smgr, float x, float y, float z)
 {
 	float terrainHeight = 24;
-	IAnimatedMesh* oMesh = smgr->getMesh("media/sydney.md2");
+	IAnimatedMesh* oMesh = smgr->getMesh("models/player1.md3");
 	if (!oMesh)
 	{
 		//deletes device if ^ failed
@@ -31,7 +31,6 @@ bool Tigrozav::load(IVideoDriver* driver, ISceneManager* smgr, float x, float y,
 	{
 		mNode->setMaterialFlag(EMF_LIGHTING, false);
 		mNode->setMD2Animation(scene::EMAT_STAND);
-		mNode->setMaterialTexture(0, driver->getTexture("media/sydney.bmp"));
 		mNode->setPosition(core::vector3df(x, y, z));
 	}
 	return true;
