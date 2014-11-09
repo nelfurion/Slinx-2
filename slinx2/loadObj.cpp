@@ -45,12 +45,12 @@ int main()
 		wNode->setMaterialTexture(0, driver->getTexture("media/detailmap3.jpg"));
 		wNode->setPosition(core::vector3df(0, 0, 0));
 	}
-	//Player pesho(0, terrainHeight, 0);
-	//if (!pesho.load(driver, smgr, pesho.X(), pesho.Y(), pesho.Z()))
-	//{
-	//	printf("Player failed to load!");
-	//	return -1;
-	//}
+	Player pesho(15, terrainHeight, 0);
+	if (!pesho.load(driver, smgr, pesho.X(), pesho.Y(), pesho.Z()))
+	{
+		printf("player failed to load!");
+		return -1;
+	}
 
 	Tigrozav alpha(0, terrainHeight, 0);
 	if (!alpha.load(driver, smgr, alpha.X(), alpha.Y(), alpha.Z()))

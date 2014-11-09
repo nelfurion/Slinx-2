@@ -18,7 +18,7 @@ Player::~Player() { }
 bool Player::load(IVideoDriver* driver, ISceneManager* smgr, float x, float y, float z)
 {
 	float terrainHeight = 24;
-	IAnimatedMesh* oMesh = smgr->getMesh("media/sydney.md2");
+	IAnimatedMesh* oMesh = smgr->getMesh("models/player1.md3");
 	if (!oMesh)
 	{
 		//deletes device if ^ failed
@@ -30,8 +30,9 @@ bool Player::load(IVideoDriver* driver, ISceneManager* smgr, float x, float y, f
 	{
 		mNode->setMaterialFlag(EMF_LIGHTING, false);
 		mNode->setMD2Animation(scene::EMAT_STAND);
-		mNode->setMaterialTexture(0, driver->getTexture("media/sydney.bmp"));
+		mNode->setMaterialTexture(0, driver->getTexture("media/player1skin.jpg"));
 		mNode->setPosition(core::vector3df(x, y, z));
+		mNode->setDebugDataVisible(scene::EDS_BBOX);
 	}
 	return true;
 }
