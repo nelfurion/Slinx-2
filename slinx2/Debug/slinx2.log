@@ -1,14 +1,11 @@
-﻿Build started 11/9/2014 10:40:55 AM.
+﻿Build started 11/9/2014 5:37:59 PM.
      1>Project "C:\Users\Radostin\Documents\Visual Studio 2013\Projects\slinx2\slinx2.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         F:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt loadObj.cpp player.cpp
-         player.cpp
+         F:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt loadObj.cpp
          loadObj.cpp
-     1>c:\users\radostin\documents\visual studio 2013\projects\slinx2\loadobj.cpp(49): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-         Generating Code...
+     1>c:\users\radostin\documents\visual studio 2013\projects\slinx2\loadobj.cpp(50): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
        Link:
          F:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Radostin\Documents\Visual Studio 2013\Projects\slinx2\Debug\slinx2.exe" /INCREMENTAL /NOLOGO Irrlicht.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Radostin\Documents\Visual Studio 2013\Projects\slinx2\Debug\slinx2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Radostin\Documents\Visual Studio 2013\Projects\slinx2\Debug\slinx2.lib" /MACHINE:X86 Debug\loadObj.obj
-         Debug\main.obj
          Debug\player.obj
          Debug\Tigrozav.obj
          Debug\tree.obj
@@ -17,4 +14,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.46
+Time Elapsed 00:00:01.45

@@ -1,6 +1,7 @@
 #ifndef Player_H
 #define Player_H
 #include <irrlicht.h>
+#include <string>
 using namespace irr;
 using namespace core;
 using namespace scene;
@@ -16,14 +17,18 @@ class Player
 		float X();
 		float Y();
 		float Z();
-		void run(IVideoDriver* driver, ISceneManager* smgr);
-		void stand(IVideoDriver* driver, ISceneManager* smgr);
+		std::string ModPath();
+		bool run(IVideoDriver* driver, ISceneManager* smgr);
+		bool stand(IVideoDriver* driver, ISceneManager* smgr);
 		IAnimatedMeshSceneNode* Node();
+		void setCamera(ISceneManager* smgr);
 	private:
 		float x;
 		float y;
 		float z;
 		IAnimatedMeshSceneNode* mNode;
+		IAnimatedMeshSceneNode* head;
 		IAnimatedMesh* oMesh;
+		std::string modPath;
 };
 #endif Player_H

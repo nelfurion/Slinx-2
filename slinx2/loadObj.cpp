@@ -4,6 +4,7 @@
 #include <vector>
 #include "headers\EventReceiver.h"
 #include "headers\Player.h"
+#include "headers\Camera.h"
 
 using namespace irr;
 using namespace core;
@@ -52,9 +53,10 @@ int main()
 		printf("Player failed to load!");
 		return -1;
 	}
+	//player.setCamera(smgr);
+	vector3df camPos = player.Node()->getAbsolutePosition();
+	Camera::setCamera(smgr, camPos.X, camPos.Y, camPos.Z);
 	
-	//ICameraSceneNode *pCamera = smgr->addCameraSceneNode();
-	smgr->addCameraSceneNodeFPS();
 	//hide mouse cursor
 	device->getCursorControl()->setVisible(false);
 	device->getGUIEnvironment()->addImage(
@@ -102,11 +104,25 @@ int main()
 				adUp = true;
 			if (wsUp && adUp)
 			{
-				player.stand(driver, smgr);
+				if (player.ModPath() != "models/staticvoidplayer.obj")
+				{
+					if (!player.stand(driver, smgr))
+					{
+						printf("Failed to load player standing animation.");
+						return -1;
+					}
+				}
 			}
 			else
 			{
-				player.run(driver, smgr);
+				if (player.ModPath() != "models/player1.md3")
+				{
+					if (!player.run(driver, smgr))
+					{
+						printf("Failed to load player running animation.");
+						return -1;
+					}
+				}
 			}
 
 			player.Node()->setPosition(nodePosition);
@@ -129,8 +145,10 @@ int main()
 				device->setWindowCaption(str.c_str());
 				lastFPS = fps;
 			}
-			else
-				device->yield();
+		}
+		else
+		{
+			device->yield();
 		}
 		std::cout << i << std::endl;
 		i++;
