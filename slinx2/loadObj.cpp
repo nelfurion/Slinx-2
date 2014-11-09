@@ -1,8 +1,9 @@
 #include <irrlicht.h>
+#include <driverChoice.h>
 #include <iostream>
 #include <vector>
+#include "headers\EventReceiver.h"
 #include "headers\Player.h"
-#include "headers\Tigrozav.h"
 
 using namespace irr;
 using namespace core;
@@ -13,10 +14,10 @@ using namespace gui;
 int terrainHeight = 24;
 int main()
 {
-
+	MyEventReceiver receiver;
 	//this is how we create a window with the openGL driver, with a certain resolution, color per bits and other stuff
 	irr::IrrlichtDevice *device = irr::createDevice(irr::video::EDT_OPENGL, dimension2d<u32>(640, 480), 32,
-		false, false, false, 0);
+		false, false, false, &receiver);
 
 	if (!device)
 		return 1;
@@ -45,31 +46,71 @@ int main()
 		wNode->setMaterialTexture(0, driver->getTexture("media/detailmap3.jpg"));
 		wNode->setPosition(core::vector3df(0, 0, 0));
 	}
-	//Player pesho(0, terrainHeight, 0);
-	//if (!pesho.load(driver, smgr, pesho.X(), pesho.Y(), pesho.Z()))
-	//{
-	//	printf("Player failed to load!");
-	//	return -1;
-	//}
-
-	Tigrozav alpha(0, terrainHeight, 0);
-	if (!alpha.load(driver, smgr, alpha.X(), alpha.Y(), alpha.Z()))
+	Player player(0, terrainHeight, 0);
+	if (!player.load(driver, smgr, player.X(), player.Y(), player.Z()))
 	{
-		printf("Tigrozavur failed to load!");
+		printf("Player failed to load!");
 		return -1;
 	}
-
-	//creates an animation from the mesh
+	
+	//ICameraSceneNode *pCamera = smgr->addCameraSceneNode();
 	smgr->addCameraSceneNodeFPS();
 	//hide mouse cursor
 	device->getCursorControl()->setVisible(false);
+	device->getGUIEnvironment()->addImage(
+		driver->getTexture("media/irrlichtlogoalpha2.tga"),
+		core::position2d<s32>(10, 20));
+
+	gui::IGUIStaticText* diagnostics = device->getGUIEnvironment()->addStaticText(
+		L"", core::rect<s32>(10, 10, 400, 20));
+	diagnostics->setOverrideColor(video::SColor(255, 255, 255, 0));
 	int lastFPS = -1;
+
+	// In order to do framerate independent movement, we have to know
+	// how long it was since the last frame
+	u32 then = device->getTimer()->getTime();
+	// This is the movemen speed in units per second.
+	const f32 MOVEMENT_SPEED = 5.f;
 	//main loop
 	int i = -32000;
+	
+	bool wsUp;
+	bool adUp;
 	while (device->run())
 	{
+		// Work out a frame delta time.
+		const u32 now = device->getTimer()->getTime();
+		const f32 frameDeltaTime = (f32)(now - then) / 1000.f; // Time in seconds
+		then = now;
 		if (device->isWindowActive())
 		{
+			wsUp = false;
+			adUp = false;
+			core::vector3df nodePosition = player.Node()->getPosition();
+
+			if (receiver.IsKeyDown(irr::KEY_KEY_W))
+				nodePosition.Z += MOVEMENT_SPEED * frameDeltaTime;
+			else if (receiver.IsKeyDown(irr::KEY_KEY_S))
+				nodePosition.Z -= MOVEMENT_SPEED * frameDeltaTime;
+			else
+				wsUp = true;
+			if (receiver.IsKeyDown(irr::KEY_KEY_A))
+				nodePosition.X -= MOVEMENT_SPEED * frameDeltaTime;
+			else if (receiver.IsKeyDown(irr::KEY_KEY_D))
+				nodePosition.X += MOVEMENT_SPEED * frameDeltaTime;
+			else
+				adUp = true;
+			if (wsUp && adUp)
+			{
+				player.stand(driver, smgr);
+			}
+			else
+			{
+				player.run(driver, smgr);
+			}
+
+			player.Node()->setPosition(nodePosition);
+
 			driver->beginScene(true, true, video::SColor(255, 200, 200, 200));
 
 			smgr->drawAll();
@@ -98,4 +139,10 @@ int main()
 
 	std::cin;
 	return 0;
+}
+
+
+void moveCamera()
+{
+
 }

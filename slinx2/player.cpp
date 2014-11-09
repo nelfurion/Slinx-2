@@ -18,13 +18,13 @@ Player::~Player() { }
 bool Player::load(IVideoDriver* driver, ISceneManager* smgr, float x, float y, float z)
 {
 	float terrainHeight = 24;
-	IAnimatedMesh* oMesh = smgr->getMesh("media/sydney.md2");
+	this->oMesh = smgr->getMesh("models/player1.md3");
 	if (!oMesh)
 	{
 		//deletes device if ^ failed
 		return false;
 	}
-	IAnimatedMeshSceneNode* mNode = smgr->addAnimatedMeshSceneNode(oMesh);
+	this->mNode = smgr->addAnimatedMeshSceneNode(oMesh);
 
 	if (mNode)
 	{
@@ -34,6 +34,14 @@ bool Player::load(IVideoDriver* driver, ISceneManager* smgr, float x, float y, f
 		mNode->setPosition(core::vector3df(x, y, z));
 	}
 	return true;
+}
+void Player::run(IVideoDriver* driver, ISceneManager* smgr)
+{
+	this->oMesh = smgr->getMesh("models/player1.md3");
+}
+void Player::stand(IVideoDriver* driver, ISceneManager* smgr)
+{
+	this->oMesh = smgr->getMesh("media/sydney.md2");
 }
 float Player::X()
 {
@@ -46,4 +54,8 @@ float Player::Y()
 float Player::Z()
 {
 	return this->z;
+}
+IAnimatedMeshSceneNode* Player::Node()
+{
+	return this->mNode;
 }
