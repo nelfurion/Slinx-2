@@ -1,7 +1,6 @@
 #ifndef Tigrozav_H
 #define Tigrozav_H
 #include <irrlicht.h>
-#include "Tigrozav.cpp"
 using namespace irr;
 using namespace core;
 using namespace scene;
