@@ -19,7 +19,7 @@ Tigrozav::~Tigrozav() { }
 bool Tigrozav::load(IVideoDriver* driver, ISceneManager* smgr, float x, float y, float z)
 {
 	float terrainHeight = 24;
-	IAnimatedMesh* oMesh = smgr->getMesh("models/player1.md3");
+	IAnimatedMesh* oMesh = smgr->getMesh("models/tigrosausrus.ms3d");
 	if (!oMesh)
 	{
 		//deletes device if ^ failed
@@ -32,6 +32,8 @@ bool Tigrozav::load(IVideoDriver* driver, ISceneManager* smgr, float x, float y,
 		mNode->setMaterialFlag(EMF_LIGHTING, false);
 		mNode->setMD2Animation(scene::EMAT_STAND);
 		mNode->setPosition(core::vector3df(x, y, z));
+		mNode->setMaterialTexture(0, driver->getTexture("media/reptilianskin.jpg"));
+		mNode->setDebugDataVisible(scene::EDS_BBOX);
 	}
 	return true;
 }
