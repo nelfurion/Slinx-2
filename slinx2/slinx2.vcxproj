@@ -41,8 +41,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Radostin\Documents\Visual Studio 2013\Projects\irrlicht-1.8.1\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Radostin\Documents\Visual Studio 2013\Projects\irrlicht-1.8.1\lib\Win32-visualstudio;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\gstoinov\Documents\GitHub\Slinx-2\irrlicht-1.8.1\include;C:\Users\Radostin\Documents\Visual Studio 2013\Projects\irrlicht-1.8.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\gstoinov\Documents\GitHub\Slinx-2\irrlicht-1.8.1\lib\Win32-visualstudio;C:\Users\Radostin\Documents\Visual Studio 2013\Projects\irrlicht-1.8.1\lib\Win32-visualstudio;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -82,14 +82,12 @@
     <ClCompile Include="loadObj.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="Tigrozav.cpp" />
-    <ClCompile Include="tree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Camera.h" />
     <ClInclude Include="headers\EventReceiver.h" />
     <ClInclude Include="headers\Player.h" />
     <ClInclude Include="headers\Tigrozav.h" />
-    <ClInclude Include="headers\Tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -27,8 +27,9 @@ class Player
 		float y;
 		float z;
 		IAnimatedMeshSceneNode* mNode;
-		IAnimatedMeshSceneNode* head;
 		IAnimatedMesh* oMesh;
+		IAnimatedMeshSceneNode* head;
+		
 		std::string modPath;
 };
 #endif Player_H

@@ -99,8 +99,8 @@ std::string Player::ModPath()
 }
 void Player::setCamera(ISceneManager* smgr)
 {
-	/*ICameraSceneNode *pCamera = smgr->addCameraSceneNodeFPS();
-	vector3df mPosition = this->Node()->getAbsolutePosition();
+	ICameraSceneNode *pCamera = smgr->addCameraSceneNodeFPS();
+	/*vector3df mPosition = this->Node()->getAbsolutePosition();
 	this->head = this->Node();
 	this->head->setPosition(vector3df(mPosition.X, mPosition.Y, mPosition.Z));
 	std::cout << head->getAbsolutePosition().X << std::endl;

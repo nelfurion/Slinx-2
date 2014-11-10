@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include "headers\EventReceiver.h"
+#include "headers\Tigrozav.h"
 #include "headers\Player.h"
 #include "headers\Camera.h"
 
@@ -44,7 +45,7 @@ int main()
 	{
 		wNode->setMaterialFlag(EMF_LIGHTING, false);
 		//wNode->setMD2Animation(scene::EMAT_STAND);
-		wNode->setMaterialTexture(0, driver->getTexture("media/detailmap3.jpg"));
+		wNode->setMaterialTexture(0, driver->getTexture("models/grass.jpg"));
 		wNode->setPosition(core::vector3df(0, 0, 0));
 	}
 	Player player(0, terrainHeight, 0);
@@ -53,9 +54,27 @@ int main()
 		printf("Player failed to load!");
 		return -1;
 	}
-	//player.setCamera(smgr);
-	vector3df camPos = player.Node()->getAbsolutePosition();
-	Camera::setCamera(smgr, camPos.X, camPos.Y, camPos.Z);
+	player.setCamera(smgr);
+
+	Tigrozav tigur(10, terrainHeight, 10);
+	if (!tigur.load(driver, smgr, tigur.X(), tigur.Y(), tigur.Z()))
+	{
+		printf("Tigrozavur failed to load");
+		return -1;
+	}
+
+	IAnimatedMeshSceneNode* tNode;
+	IAnimatedMesh* tMesh = smgr->getMesh("models/rgbforest.obj");;
+	tNode = smgr->addAnimatedMeshSceneNode(tMesh);
+	if (tNode)
+	{
+		tNode->setMaterialFlag(EMF_LIGHTING, false);
+		tNode->setMD2Animation(scene::EMAT_STAND);
+		//tNode->setMaterialTexture(0, driver->getTexture("media/sydney.bmp"));
+		tNode->setPosition(core::vector3df(30,30,30));
+	}
+	/*vector3df camPos = player.Node()->getAbsolutePosition();
+	Camera::setCamera(smgr, camPos.X, camPos.Y, camPos.Z);*/
 	
 	//hide mouse cursor
 	device->getCursorControl()->setVisible(false);
@@ -72,9 +91,8 @@ int main()
 	// how long it was since the last frame
 	u32 then = device->getTimer()->getTime();
 	// This is the movemen speed in units per second.
-	const f32 MOVEMENT_SPEED = 5.f;
+	const f32 MOVEMENT_SPEED = 50.f;
 	//main loop
-	int i = -32000;
 	
 	bool wsUp;
 	bool adUp;
@@ -91,9 +109,9 @@ int main()
 			core::vector3df nodePosition = player.Node()->getPosition();
 
 			if (receiver.IsKeyDown(irr::KEY_KEY_W))
-				nodePosition.Z += MOVEMENT_SPEED * frameDeltaTime;
-			else if (receiver.IsKeyDown(irr::KEY_KEY_S))
 				nodePosition.Z -= MOVEMENT_SPEED * frameDeltaTime;
+			else if (receiver.IsKeyDown(irr::KEY_KEY_S))
+				nodePosition.Z += MOVEMENT_SPEED * frameDeltaTime;
 			else
 				wsUp = true;
 			if (receiver.IsKeyDown(irr::KEY_KEY_A))
@@ -150,8 +168,6 @@ int main()
 		{
 			device->yield();
 		}
-		std::cout << i << std::endl;
-		i++;
 	}
 	device->drop();
 
